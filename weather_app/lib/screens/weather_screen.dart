@@ -3,11 +3,13 @@ import 'dart:ui';
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/services/weather_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../models/weather_model.dart';
+import '../providers/weather_provider.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -30,6 +32,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     String cityName = await _weatherService.getCurrentCity();
     try {
       final weather = await _weatherService.getWeather(cityName);
+      Provider.of<WeatherProvider>(context, listen: false).weather = weather;
       setState(() {
         _weather = weather;
       });
@@ -42,6 +45,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     String cityName = city;
     try {
       final weather = await _weatherService.getWeather(cityName);
+      Provider.of<WeatherProvider>(context, listen: false).weather = weather;
       setState(() {
         _weather = weather;
       });
