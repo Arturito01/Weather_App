@@ -33,6 +33,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     try {
       final weather = await _weatherService.getWeather(cityName);
       Provider.of<WeatherProvider>(context, listen: false).weather = weather;
+      Provider.of<WeatherProvider>(context, listen: false).cityName = cityName;
       setState(() {
         _weather = weather;
       });
@@ -46,6 +47,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     try {
       final weather = await _weatherService.getWeather(cityName);
       Provider.of<WeatherProvider>(context, listen: false).weather = weather;
+      Provider.of<WeatherProvider>(context, listen: false).cityName = cityName;
       setState(() {
         _weather = weather;
       });
